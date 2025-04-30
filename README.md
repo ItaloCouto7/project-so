@@ -1,5 +1,7 @@
 # SimuladorSo
 
+## Setup
+
 Clone o projeto via ssh (se tiver key) ou https (se nao tiver key):
 - SSH: ```git@github.com:ItaloCouto7/project-so.git```
 - HTTPS: ```https://github.com/ItaloCouto7/project-so.git```
@@ -16,6 +18,23 @@ Pra entrar no codigo basta dar ```code .``` dentro da pasta do projeto.
 
 colocar o projeto pra rodar localmente basta usar:
 ```ng serve``` 
+
+## Sempre que for iniciar a codar
+
+Antes de iniciar o codigo sempre atualizar seguindo o seguinte caminho no terminal:
+![atualizar-codigo](src/assets/atualizar-codigo.png)
+
+Usar rebase se estiver mudança localmente. (Main**)
+Usar reset hard se nao tiver nada a perder.
+
+
+## Subir codigo
+
+Para subir um codigo basta fazer os seguintes passos no terminal:
+![passo-a-passo](src/assets/passa-a-passo.png)
+
+Após isso vai gerar um link para um Pull Request.
+
 
 ## Servidor de desenvolvimento
 
