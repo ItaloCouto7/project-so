@@ -1,14 +1,14 @@
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
   <div>
     <label for="nome">Nome do processo:</label>
-    <input 
-      type="text" 
-      id="nome" 
-      name="nome" 
-      [(ngModel)]="userData.nome" 
+    <input
+      type="text"
+      id="nome"
+      name="nome"
+      [(ngModel)]="userData.nome"
       required
       #nome="ngModel">
-      
+
     <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
       <small *ngIf="nome.errors?.['required']">O nome do processo é obrigatório</small>
     </div>
@@ -16,14 +16,14 @@
 
   <div>
     <label for="numero">Número de chegada do processo:</label>
-    <input 
-      type="text" 
-      id="numero" 
-      name="numero" 
-      [(ngModel)]="userData.numero" 
+    <input
+      type="text"
+      id="numero"
+      name="numero"
+      [(ngModel)]="userData.numero"
       required
       #numero="ngModel">
-      
+
     <div *ngIf="numero.invalid && (numero.dirty || numero.touched)">
       <small *ngIf="numero.errors?.['required']">O número de chegada do processo é obrigatório</small>
     </div>
@@ -31,14 +31,14 @@
 
   <div>
     <label for="duracao">Duração do processo:</label>
-    <input 
-      type="text" 
-      id="duracao" 
-      name="duracao" 
-      [(ngModel)]="userData.duracao" 
+    <input
+      type="text"
+      id="duracao"
+      name="duracao"
+      [(ngModel)]="userData.duracao"
       required
       #duracao="ngModel">
-      
+
     <div *ngIf="duracao.invalid && (duracao.dirty || duracao.touched)">
       <small *ngIf="duracao.errors?.['required']">A duração do processo é obrigatória</small>
     </div>
@@ -53,3 +53,30 @@
   <p>Número de Chegada do Processo: {{ userData.numero }}</p>
   <p>Duração do Processo: {{ userData.duracao }}</p>
 </div>
+
+<div *ngIf="schedulerService.getProcesses().length > 0">
+  <h3>Processos Ordenados (FCFS):</h3>
+  <table class="process-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Tempo de Chegada</th>
+        <th>Duração</th>
+        <th>Tempo de Início</th>
+        <th>Tempo de Fim</th>
+        <th>Tempo de Espera</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let processo of schedulerService.fcfs()">
+        <td>{{ processo.name }}</td>
+        <td>{{ processo.arrivalTime }}</td>
+        <td>{{ processo.burstTime }}</td>
+        <td>{{ processo.startTime }}</td>
+        <td>{{ processo.endTime }}</td>
+        <td>{{ processo.waitTime }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
