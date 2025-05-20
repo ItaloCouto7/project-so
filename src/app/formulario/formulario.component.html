@@ -7,10 +7,13 @@
       name="nome"
       [(ngModel)]="userData.nome"
       required
-      #nome="ngModel">
+      #nome="ngModel"
+    />
 
     <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
-      <small *ngIf="nome.errors?.['required']">O nome do processo é obrigatório</small>
+      <small *ngIf="nome.errors?.['required']"
+        >O nome do processo é obrigatório</small
+      >
     </div>
   </div>
 
@@ -22,10 +25,13 @@
       name="numero"
       [(ngModel)]="userData.numero"
       required
-      #numero="ngModel">
+      #numero="ngModel"
+    />
 
     <div *ngIf="numero.invalid && (numero.dirty || numero.touched)">
-      <small *ngIf="numero.errors?.['required']">O número de chegada do processo é obrigatório</small>
+      <small *ngIf="numero.errors?.['required']"
+        >O número de chegada do processo é obrigatório</small
+      >
     </div>
   </div>
 
@@ -37,11 +43,28 @@
       name="duracao"
       [(ngModel)]="userData.duracao"
       required
-      #duracao="ngModel">
+      #duracao="ngModel"
+    />
 
     <div *ngIf="duracao.invalid && (duracao.dirty || duracao.touched)">
-      <small *ngIf="duracao.errors?.['required']">A duração do processo é obrigatória</small>
+      <small *ngIf="duracao.errors?.['required']"
+        >A duração do processo é obrigatória</small
+      >
     </div>
+  </div>
+
+  <div>
+    <label for="algoritmo">Algoritmo de Escalonamento:</label>
+    <select
+      id="algoritmo"
+      [(ngModel)]="selectedAlgorithm"
+      name="algoritmo"
+      required
+    >
+      <option *ngFor="let option of schedulingAlgorithms" [value]="option">
+        {{ option }}
+      </option>
+    </select>
   </div>
 
   <button type="submit" [disabled]="!userForm.valid">Enviar</button>
@@ -54,21 +77,21 @@
   <p>Duração do Processo: {{ userData.duracao }}</p>
 </div>
 
-<div *ngIf="schedulerService.getProcesses().length > 0">
-  <h3>Processos Ordenados (FCFS):</h3>
-  <table class="process-table">
+<div *ngIf="orderedProcesses.length > 0">
+  <h3>Processos Ordenados ({{ selectedAlgorithm }}):</h3>
+  <table>
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Tempo de Chegada</th>
+        <th>Chegada</th>
         <th>Duração</th>
-        <th>Tempo de Início</th>
-        <th>Tempo de Fim</th>
-        <th>Tempo de Espera</th>
+        <th>Início</th>
+        <th>Fim</th>
+        <th>Espera</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let processo of schedulerService.fcfs()">
+      <tr *ngFor="let processo of orderedProcesses">
         <td>{{ processo.name }}</td>
         <td>{{ processo.arrivalTime }}</td>
         <td>{{ processo.burstTime }}</td>
@@ -79,4 +102,3 @@
     </tbody>
   </table>
 </div>
-

@@ -9,14 +9,27 @@ import { Process } from '../models/process';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.scss']
+  styleUrls: ['./formulario.component.scss'],
 })
 export class FormularioComponent {
   userData = {
     nome: '',
     numero: '',
-    duracao: ''
+    duracao: '',
   };
+
+  schedulingAlgorithms = [
+    'FCFS',
+    'SJF',
+    'SRTF',
+    'Round Robin',
+    'Prioridade (Não Preemptivo)',
+    'Prioridade (Preemptivo)',
+  ];
+
+  selectedAlgorithm = 'FCFS';
+
+  orderedProcesses: Process[] = [];
 
   submitted = false;
 
@@ -27,14 +40,37 @@ export class FormularioComponent {
       id: this.schedulerService.getProcesses().length + 1,
       name: this.userData.nome,
       arrivalTime: Number(this.userData.numero),
-      burstTime: Number(this.userData.duracao)
+      burstTime: Number(this.userData.duracao),
     };
 
     this.schedulerService.addProcess(process);
 
     this.submitted = true;
 
-    console.log('Dados do formulário:', this.userData);
-  }
+    switch (this.selectedAlgorithm) {
+      case 'FCFS':
+        this.orderedProcesses = this.schedulerService.fcfs();
+        break;
+      case 'SJF':
+        this.orderedProcesses = this.schedulerService.sjf();
+        break;
+      case 'SRTF':
+        this.orderedProcesses = this.schedulerService.srtf();
+        break;
+      case 'Round Robin':
+        this.orderedProcesses = this.schedulerService.roundRobin();
+        break;
+      case 'Prioridade (Não Preemptivo)':
+        this.orderedProcesses = this.schedulerService.prioridadeNaoPreemptivo();
+        break;
+      case 'Prioridade (Preemptivo)':
+        this.orderedProcesses = this.schedulerService.prioridadePreemptivo();
+        break;
+      default:
+        this.orderedProcesses = [];
+        break;
+    }
 
+    console.log('Algoritmo selecionado:', this.selectedAlgorithm);
+  }
 }

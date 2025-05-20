@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Process } from '../models/process';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SchedulerService {
   private processes: Process[] = [];
@@ -39,5 +39,30 @@ export class SchedulerService {
     });
 
     return sortedProcesses;
+  }
+
+  sjf(): Process[] {
+    console.warn('SJF ainda não implementado');
+    return [];
+  }
+
+  srtf(): Process[] {
+    console.warn('SRTF ainda não implementado');
+    return [];
+  }
+
+  roundRobin(): Process[] {
+    console.warn('Round Robin ainda não implementado');
+    return [];
+  }
+
+  prioridadeNaoPreemptivo(): Process[] {
+    console.warn('Prioridade (Não Preemptivo) ainda não implementado');
+    return [];
+  }
+
+  prioridadePreemptivo(): Process[] {
+    console.warn('Prioridade (Preemptivo) ainda não implementado');
+    return [];
   }
 }
