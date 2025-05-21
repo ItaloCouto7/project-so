@@ -3,7 +3,8 @@ export interface Process {
   name: string;
   arrivalTime: number;
   burstTime: number;
+  priority?: number;
   startTime?: number;
-  endTime?: number;
+  endTime: number;
   waitTime?: number;
 }

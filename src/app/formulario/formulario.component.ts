@@ -41,6 +41,7 @@ export class FormularioComponent {
       name: this.userData.nome,
       arrivalTime: Number(this.userData.numero),
       burstTime: Number(this.userData.duracao),
+      endTime: 0
     };
 
     this.schedulerService.addProcess(process);
@@ -61,16 +62,14 @@ export class FormularioComponent {
         this.orderedProcesses = this.schedulerService.roundRobin();
         break;
       case 'Prioridade (Não Preemptivo)':
-        this.orderedProcesses = this.schedulerService.prioridadeNaoPreemptivo();
+        this.orderedProcesses = this.schedulerService.priorityNonPreemptive();
         break;
       case 'Prioridade (Preemptivo)':
-        this.orderedProcesses = this.schedulerService.prioridadePreemptivo();
+        this.orderedProcesses = this.schedulerService.priorityPreemptive();
         break;
       default:
         this.orderedProcesses = [];
         break;
     }
-
-    console.log('Algoritmo selecionado:', this.selectedAlgorithm);
   }
 }

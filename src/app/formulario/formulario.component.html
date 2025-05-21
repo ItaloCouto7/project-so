@@ -70,16 +70,9 @@
   <button type="submit" [disabled]="!userForm.valid">Enviar</button>
 </form>
 
-<div *ngIf="submitted">
-  <h3>Dados Enviados:</h3>
-  <p>Nome: {{ userData.nome }}</p>
-  <p>Número de Chegada do Processo: {{ userData.numero }}</p>
-  <p>Duração do Processo: {{ userData.duracao }}</p>
-</div>
-
 <div *ngIf="orderedProcesses.length > 0">
   <h3>Processos Ordenados ({{ selectedAlgorithm }}):</h3>
-  <table>
+  <table class="process-table">
     <thead>
       <tr>
         <th>Nome</th>
