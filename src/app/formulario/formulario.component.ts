@@ -23,8 +23,8 @@ export class FormularioComponent {
     'SJF',
     'SRTF',
     'Round Robin',
-    'Prioridade (Não Preemptivo)',
-    'Prioridade (Preemptivo)',
+    'Priority (No Preemptive)',
+    'Priority (Preemptive)',
   ];
 
   selectedAlgorithm = 'FCFS';
@@ -61,10 +61,10 @@ export class FormularioComponent {
       case 'Round Robin':
         this.orderedProcesses = this.schedulerService.roundRobin();
         break;
-      case 'Prioridade (Não Preemptivo)':
+      case 'Priority (No Preemptive)':
         this.orderedProcesses = this.schedulerService.priorityNonPreemptive();
         break;
-      case 'Prioridade (Preemptivo)':
+      case 'Priority (Preemptive)':
         this.orderedProcesses = this.schedulerService.priorityPreemptive();
         break;
       default:
