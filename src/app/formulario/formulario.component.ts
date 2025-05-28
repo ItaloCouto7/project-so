@@ -41,7 +41,8 @@ export class FormularioComponent {
       name: this.userData.nome,
       arrivalTime: Number(this.userData.numero),
       burstTime: Number(this.userData.duracao),
-      endTime: 0
+      endTime: 0,
+      Priority: this.schedulerService.priorityProcesses().length + 1,
     };
 
     this.schedulerService.addProcess(process);

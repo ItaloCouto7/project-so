@@ -15,6 +15,9 @@ export class SchedulerService {
     return this.processes;
   }
 
+  priorityProcesses(): Process[] {
+    return this.processes.filter(p => p.priority !== undefined);
+  }
   reset() {
     this.processes = [];
   }
@@ -25,7 +28,6 @@ export class SchedulerService {
       startTime: undefined,
       endTime: 0,
       waitTime: undefined,
-      priority: p.priority ?? 0,
     }));
   }
 

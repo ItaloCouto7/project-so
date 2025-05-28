@@ -7,4 +7,5 @@ export interface Process {
   startTime?: number;
   endTime: number;
   waitTime?: number;
+  Priority: number;
 }
